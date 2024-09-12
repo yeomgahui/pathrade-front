@@ -17,12 +17,25 @@ const Sidebar = () => {
           <h2 className="text-white text-2xl">PATHRADE.</h2>
         </div>
         <nav>
-          <MenuItem icon={HomeIcon} label="Dashboard" isActive />
-          <MenuItem icon={DocumentMagnifyingGlassIcon} label="Line Sheets" />
-          <MenuItem icon={DocumentIcon} label="Invoice" />
-          <MenuItem icon={ChartPieIcon} label="Deposit Status" />
-          <MenuItem icon={CogIcon} label="Inventories" />
-          <MenuItem icon={CogIcon} label="Settings" />
+          <MenuItem
+            icon={HomeIcon}
+            label="Dashboard"
+            isActive
+            href="/dashboard"
+          />
+          <MenuItem
+            icon={DocumentMagnifyingGlassIcon}
+            label="Line Sheets"
+            href="line-sheets"
+          />
+          <MenuItem icon={DocumentIcon} label="Invoice" href="invoice" />
+          <MenuItem
+            icon={ChartPieIcon}
+            label="Deposit Status"
+            href="deposit-status"
+          />
+          <MenuItem icon={CogIcon} label="Inventories" href="inventories" />
+          <MenuItem icon={CogIcon} label="Settings" href="settings" />
         </nav>
       </div>
       <div className="flex items-center mb-20 justify-between">
