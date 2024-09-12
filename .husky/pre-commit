@@ -1,0 +1,2 @@
+# Run lint and format on all relevant files
+pnpm lint-staged
