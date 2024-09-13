@@ -1,17 +1,17 @@
+'use client';
+import { cloneElement } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 interface MenuItemProps {
-  icon: React.ElementType;
+  icon: JSX.Element;
   label: string;
   href: string;
-  isActive?: boolean;
 }
 
-export default function MenuItem({
-  icon: Icon,
-  label,
-  isActive,
-  href,
-}: MenuItemProps) {
+export default function MenuItem({ icon, label, href }: MenuItemProps) {
+  const pathname = usePathname();
+  const isActive = pathname === href;
+
   return (
     <Link href={href}>
       <div
@@ -19,7 +19,7 @@ export default function MenuItem({
           isActive ? 'bg-gray-700 rounded-md' : ''
         }`}
       >
-        <Icon className="h-5 w-5 text-gray-400" />
+        {cloneElement(icon, { className: 'h-5 w-5 text-gray-400' })}
         <span className="ml-3 text-white">{label}</span>
       </div>
     </Link>
