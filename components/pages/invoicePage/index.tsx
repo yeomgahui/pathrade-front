@@ -7,26 +7,35 @@ import BankReceiptsContent from './contents/BankReceiptsContent';
 import DepositInvoicesContent from './contents/DepositInvoicesContent';
 import CreditsContent from './contents/CreditsContent';
 
+const TAB_KEYS = {
+  ORDER_CONFIRMS: 'order_confirms',
+  PROFORMA: 'proforma',
+  PAYMENT: 'payment',
+  BANK_RECEIPTS: 'bank_receipts',
+  DEPOSIT_INVOICES: 'deposit_invoices',
+  CREDITS: 'credits',
+} as const;
+
 const InvoicePage = () => {
-  const [selectedTab, setSelectedTab] = useState<string>('payment'); // 기본 탭 설정
+  const [selectedTab, setSelectedTab] = useState<string>(TAB_KEYS.PAYMENT); // 기본 탭 설정
 
   // 선택된 탭에 따라 렌더링할 콘텐츠 결정
-  const renderContent = () => {
+  const renderContent = (): JSX.Element | null => {
     switch (selectedTab) {
-      case 'order_confirms':
+      case TAB_KEYS.ORDER_CONFIRMS:
         return <OrderConfirmsContent />;
-      case 'proforma':
+      case TAB_KEYS.PROFORMA:
         return <ProformaContent />;
-      case 'payment':
+      case TAB_KEYS.PAYMENT:
         return <PaymentContent />;
-      case 'bank_receipts':
+      case TAB_KEYS.BANK_RECEIPTS:
         return <BankReceiptsContent />;
-      case 'deposit_invoices':
+      case TAB_KEYS.DEPOSIT_INVOICES:
         return <DepositInvoicesContent />;
-      case 'credits':
+      case TAB_KEYS.CREDITS:
         return <CreditsContent />;
       default:
-        return null;
+        return <div>Content not available</div>; // Fallback 처리
     }
   };
 
