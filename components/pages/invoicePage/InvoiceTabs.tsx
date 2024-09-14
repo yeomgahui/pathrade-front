@@ -1,8 +1,6 @@
-import { useState } from 'react';
 import { Tab } from '@/types/tabTypes';
 import Tabs from '@/components/molecules/Tabs'; // 기존의 Tabs 컴포넌트를 import
 
-// 탭 데이터 설정 (페이지에 종속된 내용)
 const tabs: Tab[] = [
   { label: 'Order Confirms', value: 'order_confirms' },
   { label: 'Proforma', value: 'proforma' },
@@ -12,17 +10,13 @@ const tabs: Tab[] = [
   { label: 'Credits', value: 'credits' },
 ];
 
-const InvoiceTab = () => {
-  const [selectedTab, setSelectedTab] = useState<string>(tabs[0].value);
+interface InvoiceTabProps {
+  selectedTab: string;
+  onTabClick: (value: string) => void;
+}
 
-  const handleTabSelect = (value: string) => {
-    setSelectedTab(value);
-    console.log('Selected Tab:', value);
-  };
-
-  return (
-    <Tabs tabs={tabs} selectedTab={selectedTab} onTabClick={handleTabSelect} />
-  );
+const InvoiceTabs = ({ selectedTab, onTabClick }: InvoiceTabProps) => {
+  return <Tabs tabs={tabs} selectedTab={selectedTab} onTabClick={onTabClick} />;
 };
 
-export default InvoiceTab;
+export default InvoiceTabs;
