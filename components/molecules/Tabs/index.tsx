@@ -11,7 +11,7 @@ type TabsProps = {
   onTabClick: (value: string) => void;
 };
 
-const Tabs: React.FC<TabsProps> = ({ tabs, selectedTab, onTabClick }) => {
+const Tabs = ({ tabs, selectedTab, onTabClick }: TabsProps) => {
   return (
     <div className="flex border-b-2 border-gray-200 shadow-bottom">
       {tabs.map((tab) => (
