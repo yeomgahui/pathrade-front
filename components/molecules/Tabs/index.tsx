@@ -1,9 +1,4 @@
-import React from 'react';
-
-type Tab = {
-  label: string;
-  value: string;
-};
+import { Tab } from '@/types/tabTypes';
 
 type TabsProps = {
   tabs: Tab[];
