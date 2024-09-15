@@ -1,13 +1,20 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+
 import Pagination from '@/components/organisms/Pagination';
 
 const Table = () => {
+  const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+  };
+
+  const handleRowClick = (title: string) => {
+    router.push(`payment/${encodeURIComponent(title)}`); // 클릭 시 이동할 경로를 설정합니다.
   };
 
   return (
@@ -30,7 +37,12 @@ const Table = () => {
 
         {/* 테이블 바디 */}
         <tbody>
-          <tr className="border-t border-gray-200">
+          <tr
+            className="border-t border-gray-200"
+            onClick={() =>
+              handleRowClick(`J.LINDEBERG STOCKLIST AVAILABLE SS23 Season`)
+            } // 행 클릭 시 이동
+          >
             <td className="py-4 px-4">
               <div className="font-medium text-gray-900">
                 J.LINDEBERG STOCKLIST

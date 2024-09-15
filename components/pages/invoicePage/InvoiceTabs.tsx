@@ -1,30 +1,60 @@
-import { Tab } from '@/types/tabTypes';
-import { INVOICE_TAB_KEYS, INVOICE_TAB_VALUE } from '@/types/invoice';
-import Tabs from '@/components/molecules/Tabs'; // 기존의 Tabs 컴포넌트를 import
+'use client';
 
-const tabs: Tab[] = [
-  { label: 'Order Confirms', value: INVOICE_TAB_KEYS.ORDER_CONFIRMS },
-  { label: 'Proforma', value: INVOICE_TAB_KEYS.PROFORMA },
-  { label: 'Payment', value: INVOICE_TAB_KEYS.PAYMENT },
-  { label: 'Bank Receipts', value: INVOICE_TAB_KEYS.BANK_RECEIPTS },
-  { label: 'Deposit Invoices', value: INVOICE_TAB_KEYS.DEPOSIT_INVOICES },
-  { label: 'Credits', value: INVOICE_TAB_KEYS.CREDITS },
+import { useState } from 'react';
+import Link from 'next/link'; // Link를 import합니다.
+import { INVOICE_TAB_KEYS } from '@/types/invoice';
+import Tabs from '@/components/molecules/Tabs'; // Compound Component를 import
+
+const tabs = [
+  {
+    label: 'Order Confirms',
+    value: INVOICE_TAB_KEYS.ORDER_CONFIRMS,
+    href: 'order-confirms',
+  },
+  {
+    label: 'Proforma',
+    value: INVOICE_TAB_KEYS.PROFORMA,
+    href: 'proforma',
+  },
+  {
+    label: 'Payment',
+    value: INVOICE_TAB_KEYS.PAYMENT,
+    href: 'payment',
+  },
+  {
+    label: 'Bank Receipts',
+    value: INVOICE_TAB_KEYS.BANK_RECEIPTS,
+    href: 'bank-receipts',
+  },
+  {
+    label: 'Deposit Invoices',
+    value: INVOICE_TAB_KEYS.DEPOSIT_INVOICES,
+    href: 'deposit-invoices',
+  },
+  {
+    label: 'Credits',
+    value: INVOICE_TAB_KEYS.CREDITS,
+    href: 'credits',
+  },
 ];
 
-interface InvoiceTabProps {
-  selectedTab: INVOICE_TAB_VALUE;
-  onTabClick: (value: INVOICE_TAB_VALUE) => void;
-}
+const InvoiceTabs = () => {
+  const [selectedTab, setSelectedTab] = useState<string>(
+    INVOICE_TAB_KEYS.PAYMENT,
+  );
 
-const InvoiceTabs = ({ selectedTab, onTabClick }: InvoiceTabProps) => {
   const handleTabClick = (value: string) => {
-    if (Object.values(INVOICE_TAB_KEYS).includes(value as INVOICE_TAB_VALUE)) {
-      onTabClick(value as INVOICE_TAB_VALUE);
-    }
+    setSelectedTab(value);
   };
 
   return (
-    <Tabs tabs={tabs} selectedTab={selectedTab} onTabClick={handleTabClick} />
+    <Tabs selectedTab={selectedTab} onTabClick={handleTabClick}>
+      {tabs.map((tab) => (
+        <Link key={tab.value} href={tab.href}>
+          <Tabs.Tab value={tab.value} label={tab.label} />
+        </Link>
+      ))}
+    </Tabs>
   );
 };
 

@@ -23,7 +23,11 @@ const Sidebar = () => {
             label="Line Sheets"
             href="line-sheets"
           />
-          <MenuItem icon={<DocumentIcon />} label="Invoice" href="/invoice" />
+          <MenuItem
+            icon={<DocumentIcon />}
+            label="Invoice"
+            href="/invoice/payment"
+          />
           <MenuItem
             icon={<ChartPieIcon />}
             label="Deposit Status"
