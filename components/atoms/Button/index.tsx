@@ -3,6 +3,7 @@ type ButtonProps = {
   variant?: 'primary' | 'secondary';
   onClick?: () => void;
   disabled?: boolean;
+  className?: string;
 };
 
 const Button = ({
@@ -10,9 +11,9 @@ const Button = ({
   variant = 'primary',
   onClick,
   disabled = false,
+  className = '',
 }: ButtonProps) => {
-  const baseStyles =
-    'px-4 py-2 rounded-lg shadow-md focus:outline-none transition duration-150 ease-in-out';
+  const baseStyles = `px-4 py-2 rounded-lg shadow-md focus:outline-none transition duration-150 ease-in-out ${className}`;
 
   const variantStyles = {
     primary: 'bg-purple-600 text-white hover:bg-purple-700',
